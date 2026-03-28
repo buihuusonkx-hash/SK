@@ -1,10 +1,22 @@
 $path = "c:\Users\Administrator\Downloads\math-matrix-pro-2026\src\App.tsx"
-$bytes = [System.IO.File]::ReadAllBytes($path)
-# The file was double-encoded: original UTF-8 -> read as Latin-1 -> written as UTF-8
-# To fix: read as UTF-8 (get garbled string) -> get bytes as Latin-1 -> interpret as UTF-8
-$garbled = [System.Text.Encoding]::UTF8.GetString($bytes)
-$latin1Bytes = [System.Text.Encoding]::GetEncoding(28591).GetBytes($garbled)
-$fixed = [System.Text.Encoding]::UTF8.GetString($latin1Bytes)
+$text = [System.IO.File]::ReadAllText($path, [System.Text.Encoding]::UTF8)
+
+# Fix corrupted Vietnamese patterns (double-encoded + undefined bytes)
+$fixes = @{
+    "Đ`u0001`\`u0000`ng xuất" = "Đăng xuất"
+    "Đ`u0001`\`u0000`ng nhập" = "Đăng nhập"
+    "Tên đ`u0001`\`u0000`ng nhập" = "Tên đăng nhập"
+    "t`u0001`\`u0000`ng nhập" = "tên đăng nhập"
+}
+
+# More robust: replace the specific Unicode replacement character sequences
+# Pattern: ă = C4 83, 83 is undefined in Windows-1252 -> became U+FFFD
+$text = $text -replace 'Đ\x{FFFD}\x{FFFD}ng', 'Đăng'
+$text = $text -replace 'đ\x{FFFD}\x{FFFD}ng', 'đăng'
+$text = $text -replace '\x{FFFD}\x{FFFD}ng nhập', 'đăng nhập'
+$text = $text -replace 'Tên \x{FFFD}.\x{FFFD}ng', 'Tên đăng'
+$text = $text -replace '\x{FFFD}', '?'
+
 $utf8NoBom = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText($path, $fixed, $utf8NoBom)
-Write-Host "Fixed! Sample: $($fixed.Substring(0, 80))"
+[System.IO.File]::WriteAllText($path, $text, $utf8NoBom)
+Write-Host "Done"

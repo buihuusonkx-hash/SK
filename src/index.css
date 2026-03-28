@@ -58,6 +58,7 @@
 @layer base {
   body {
     @apply bg-slate-50 text-slate-900;
+    font-family: "Times New Roman", Times, serif;
   }
 }
 
@@ -147,7 +148,12 @@
 
 /* Custom styles for exam rendering */
 .font-serif {
-  font-family: var(--font-serif);
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Ensure any element uses Times New Roman by default */
+* {
+  font-family: "Times New Roman", Times, serif;
 }
 
 /* KaTeX custom overrides */

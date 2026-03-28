@@ -903,7 +903,7 @@ function Header({ monHoc, setMonHoc, handleLogout }: any) {
         className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 rounded-full mb-4"
       >
         <Sparkles className="w-3 h-3 text-indigo-600" />
-        <p className="text-indigo-600 font-black tracking-widest text-[9px] uppercase">Công cụ Giáo dục Thông minh n�fm 2026</p>
+        <p className="text-indigo-600 font-black tracking-widest text-[9px] uppercase">Công cụ Giáo dục Thông minh năm 2026</p>
       </motion.div>
       
       <h1 className="text-5xl font-black text-slate-900 italic tracking-tighter mb-6">
@@ -935,7 +935,7 @@ function Header({ monHoc, setMonHoc, handleLogout }: any) {
           className="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold text-rose-500 hover:bg-rose-50 transition-all"
         >
           <LogOut className="w-3.5 h-3.5" />
-          Đ�fng xuất
+          Đăng xuất
         </button>
       </div>
     </header>
@@ -950,7 +950,7 @@ function Login({ handleLogin, user, setUser, pass, setPass }: any) {
       localStorage.setItem('mmp_logged_in', 'true');
       handleLogin();
     } else {
-      setError('Tên �'�fng nhập hoặc mật khẩu không chính xác!');
+      setError('Tên đăng nhập hoặc mật khẩu không chính xác!');
     }
   };
 
@@ -972,14 +972,14 @@ function Login({ handleLogin, user, setUser, pass, setPass }: any) {
             <Key className="text-white w-8 h-8" />
           </div>
           <h1 className="text-3xl font-black text-white italic tracking-tighter">Ma trận Toán học. <span className="text-indigo-400">Pro</span></h1>
-          <p className="text-slate-400 text-xs mt-2 font-bold uppercase tracking-widest">H�? th�'ng quản lý �'ề thi 2026</p>
+          <p className="text-slate-400 text-xs mt-2 font-bold uppercase tracking-widest">Hệ thống quản lý đề thi 2026</p>
         </div>
 
         <div className="space-y-4">
           <div className="relative">
             <input 
               className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white outline-none focus:border-indigo-400 focus:bg-white/10 transition-all placeholder:text-slate-500" 
-              placeholder="Tên �'�fng nhập" 
+              placeholder="Tên đăng nhập" 
               value={user} 
               onChange={e => setUser(e.target.value)} 
             />
@@ -1009,12 +1009,12 @@ function Login({ handleLogin, user, setUser, pass, setPass }: any) {
             onClick={onLogin} 
             className="w-full py-4 bg-indigo-500 text-white rounded-2xl font-black hover:bg-indigo-600 transition-all shadow-xl shadow-indigo-500/20 mt-4 active:scale-95"
           >
-            Đ�,NG NHẬP H�? THỐNG
+            ĐĂNG NHẬP HỆ THỐNG
           </button>
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-slate-500 text-[10px] font-bold uppercase tracking-tighter">Bản quyền thu�Tc về Smarter Education Tools © 2026</p>
+          <p className="text-slate-500 text-[10px] font-bold uppercase tracking-tighter">Bản quyền thuộc về Smarter Education Tools © 2026</p>
         </div>
       </motion.div>
     </div>
